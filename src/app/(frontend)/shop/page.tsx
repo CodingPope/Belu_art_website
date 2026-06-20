@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description: 'Support the dream. Originals, fine art prints, wearable art, and small joys by Belu Maluenda.',
 }
 import { Frame } from '@/components/Frame'
+import { Alert } from '@/components/Alert'
 import { EmailSignup } from '@/components/EmailSignup'
 import { StarIcon, ArrowIcon } from '@/components/Icons'
 import { getImageUrl } from '@/types'
@@ -61,21 +62,15 @@ export default async function ShopPage() {
           </Link>
         </div>
 
-        <div className="shop-lead" data-r>
-          <div>
-            <p className="big">{heading}</p>
-            <p className="note">
-              {bodyText}
-              <span className="sig">{signature}</span>
-            </p>
-          </div>
-          <div>
-            <div className="card">
-              <div className="kicker">First access</div>
-              <h3>Join the list</h3>
-              <p>New work, market dates, and first dibs on the next collection. No noise.</p>
-              <EmailSignup id="joinShop" source="shop" />
-            </div>
+        <div style={{ marginBottom: 'clamp(2rem, 4vw, 3rem)' }}>
+          <Alert heading={heading} body={bodyText} signature={signature} />
+        </div>
+        <div data-r style={{ maxWidth: 480, marginBottom: 'clamp(2.6rem, 5vw, 4rem)' }}>
+          <div className="card">
+            <div className="kicker">First access</div>
+            <h3>Join the list</h3>
+            <p>New work, market dates, and first dibs on the next collection. No noise.</p>
+            <EmailSignup id="joinShop" source="shop" />
           </div>
         </div>
 
