@@ -1375,6 +1375,7 @@ h3 {
   left: 50%;
   bottom: 28px;
   transform: translate(-50%, calc(100% + 60px));
+  visibility: hidden;
   z-index: 9000;
   background: var(--ink);
   color: var(--paper);
@@ -1390,6 +1391,7 @@ h3 {
 }
 .toast.show {
   transform: translate(-50%, 0);
+  visibility: visible;
 }
 .toast .star {
   width: 13px;
