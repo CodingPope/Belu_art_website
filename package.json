@@ -1,0 +1,46 @@
+{
+  "name": "belu-malu",
+  "version": "0.1.0",
+  "description": "Belu Malu — Art by Belu Maluenda",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_OPTIONS=--no-deprecation next dev",
+    "build": "NODE_OPTIONS='--no-deprecation --max-old-space-size=8000' next build",
+    "start": "NODE_OPTIONS=--no-deprecation next start",
+    "lint": "next lint",
+    "payload": "NODE_OPTIONS=--no-deprecation payload",
+    "generate:types": "NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:importmap": "NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "db:migrate": "NODE_OPTIONS=--no-deprecation payload migrate",
+    "db:migrate:create": "NODE_OPTIONS=--no-deprecation payload migrate:create"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.84.1",
+    "@payloadcms/db-sqlite": "^3.85.1",
+    "@payloadcms/live-preview-react": "^3.84.1",
+    "@payloadcms/next": "^3.84.1",
+    "@payloadcms/richtext-lexical": "^3.84.1",
+    "@payloadcms/storage-vercel-blob": "^3.84.1",
+    "@payloadcms/ui": "^3.84.1",
+    "cross-env": "^10.1.0",
+    "graphql": "^16.8.1",
+    "next": "15.3.9",
+    "payload": "^3.84.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.2",
+    "sonic-boom": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.3.3",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18.20.0"
+  }
+}
