@@ -9,6 +9,7 @@ import { Toast } from '@/components/Toast'
 import { Lightbox } from '@/components/Lightbox'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { PageTransition } from '@/components/PageTransition'
+import { ImageProtection } from '@/components/ImageProtection'
 import { getSiteSettings } from './server'
 import './globals.css'
 
@@ -92,6 +93,7 @@ export default async function FrontendLayout({
         <Toast />
         <Lightbox />
         <ScrollReveal />
+        <ImageProtection />
       </body>
     </html>
   )
