@@ -1962,6 +1962,133 @@ button img {
   color: #fff;
 }
 
+/* ---- journal post ---- */
+.jp-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
+}
+.jp-head h1 {
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  margin-top: 1.1rem;
+  line-height: 1.06;
+}
+.jp-meta {
+  font-family: var(--grot);
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  color: var(--stone);
+  margin-top: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  flex-wrap: wrap;
+}
+.jp-meta .dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--line);
+}
+.jp-cover {
+  max-width: 900px;
+  margin: 0 auto clamp(2.4rem, 5vw, 3.6rem);
+}
+.jp-cover .frame {
+  transform: rotate(-0.4deg);
+}
+.jp-end {
+  text-align: center;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+}
+.jp-end .star {
+  width: 16px;
+  height: 16px;
+  color: var(--red);
+  opacity: 0.7;
+}
+.jp-nav {
+  max-width: 720px;
+  margin: 0 auto clamp(2.4rem, 4vw, 3rem);
+}
+.jp-nav-head {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: clamp(1.4rem, 2.6vw, 2rem);
+}
+.jp-nav-head .ln {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.jp-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.jp-nav-link {
+  background: var(--surface);
+  padding: clamp(1.2rem, 2.4vw, 1.8rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: background 0.35s var(--ease);
+}
+.jp-nav-link:hover {
+  background: var(--paper);
+}
+.jp-nav-link.next {
+  text-align: right;
+  align-items: flex-end;
+}
+.jp-nav-dir {
+  font-family: var(--grot);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--stone);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.jp-nav-dir .ar {
+  width: 18px;
+  height: 8px;
+  color: var(--red);
+  transition: transform 0.35s var(--ease);
+}
+.jp-nav-dir .ar.flip {
+  transform: scaleX(-1);
+}
+.jp-nav-link:hover .ar {
+  transform: translateX(4px);
+}
+.jp-nav-link:hover .ar.flip {
+  transform: scaleX(-1) translateX(4px);
+}
+.jp-nav-title {
+  font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.2;
+  font-variation-settings: 'SOFT' 40, 'opsz' 30;
+}
+@media (max-width: 560px) {
+  .jp-nav-grid {
+    grid-template-columns: 1fr;
+  }
+  .jp-nav-link.next {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
 /* ---- about ---- */
 .ahead {
   text-align: center;
@@ -1983,6 +2110,74 @@ button img {
   color: var(--ink);
   margin: 0 0 1.5rem;
 }
+.essay > p:first-child,
+.essay > div > p:first-child {
+  font-size: 1.32rem;
+  line-height: 1.68;
+}
+.essay h2 {
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  margin: clamp(2.4rem, 5vw, 3.6rem) 0 1.2rem;
+  padding-top: clamp(1.2rem, 2.4vw, 2rem);
+  border-top: 1px solid var(--line);
+}
+.essay h3 {
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  margin: clamp(2rem, 4vw, 3rem) 0 1rem;
+}
+.essay em,
+.essay i {
+  font-style: italic;
+}
+.essay strong,
+.essay b {
+  font-weight: 600;
+}
+.essay blockquote {
+  margin: clamp(1.6rem, 3vw, 2.4rem) 0;
+  padding: 1.6rem 0 1.6rem 1.8rem;
+  border-left: 2px solid var(--red);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  font-variation-settings: 'SOFT' 50, 'opsz' 30;
+}
+.essay blockquote p {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.essay ul,
+.essay ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.6rem;
+}
+.essay li {
+  font-family: var(--read);
+  font-size: 1.22rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.essay a {
+  color: var(--red-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--line);
+  transition: text-decoration-color 0.3s;
+}
+.essay a:hover {
+  text-decoration-color: var(--red-deep);
+}
+.essay img {
+  border: 1px solid var(--line);
+  box-shadow: var(--sh-soft);
+  margin: clamp(1.6rem, 3vw, 2.4rem) 0;
+}
+.jp .essay > p:first-child::first-letter,
+.jp .essay > div > p:first-child::first-letter,
 .dropcap::first-letter {
   font-family: var(--serif);
   float: left;
