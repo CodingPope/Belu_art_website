@@ -9,7 +9,7 @@ export function ScrollReveal() {
     let io: IntersectionObserver | null = null
     let mo: MutationObserver | null = null
 
-    const frame = requestAnimationFrame(() => {
+    const timer = setTimeout(() => {
       if (reduce) {
         document.querySelectorAll('[data-r]').forEach((el) => el.classList.add('in'))
         return
@@ -40,10 +40,10 @@ export function ScrollReveal() {
         })
       })
       mo.observe(document.body, { childList: true, subtree: true })
-    })
+    }, 100)
 
     return () => {
-      cancelAnimationFrame(frame)
+      clearTimeout(timer)
       io?.disconnect()
       mo?.disconnect()
     }
