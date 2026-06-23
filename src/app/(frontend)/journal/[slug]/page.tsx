@@ -26,7 +26,10 @@ export async function generateMetadata({ params }: Props) {
     const payload = await payloadClient()
     const res = await payload.find({
       collection: 'journal-posts',
-      where: { slug: { equals: slug } },
+      where: {
+        slug: { equals: slug },
+        _status: { equals: 'published' },
+      },
       limit: 1,
     })
     const post = res.docs[0] as unknown as JournalPostDoc | undefined
@@ -36,8 +39,8 @@ export async function generateMetadata({ params }: Props) {
         description: post.excerpt || undefined,
       }
     }
-  } catch {
-    // DB not connected
+  } catch (e) {
+    console.error('[journal-meta] Failed to fetch metadata:', slug, e)
   }
   return { title: 'Journal' }
 }
@@ -52,7 +55,10 @@ export default async function JournalPostPage({ params }: Props) {
     const payload = await payloadClient()
     const res = await payload.find({
       collection: 'journal-posts',
-      where: { slug: { equals: slug } },
+      where: {
+        slug: { equals: slug },
+        _status: { equals: 'published' },
+      },
       limit: 1,
     })
     post = (res.docs[0] as unknown as JournalPostDoc) || null
@@ -69,8 +75,8 @@ export default async function JournalPostPage({ params }: Props) {
       if (idx > 0) prevPost = posts[idx - 1]
       if (idx < posts.length - 1) nextPost = posts[idx + 1]
     }
-  } catch {
-    // DB not connected
+  } catch (e) {
+    console.error('[journal-post] Failed to fetch post:', slug, e)
   }
 
   if (!post) notFound()
