@@ -1,58 +1,38 @@
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET(req: Request) {
-  const url = new URL(req.url)
-  const slug = url.searchParams.get('slug') || 'poisoning-myself-kambo-part-1'
+export async function GET() {
+  const info: Record<string, unknown> = {}
+
+  info.hasDbUrl = !!process.env.DATABASE_URL
+  info.dbUrlLength = process.env.DATABASE_URL?.length ?? 0
+  info.hasPayloadSecret = !!process.env.PAYLOAD_SECRET
+  info.hasServerUrl = !!process.env.NEXT_PUBLIC_SERVER_URL
+  info.nodeEnv = process.env.NODE_ENV
 
   try {
-    const payload = await getPayload({ config: await config })
+    const config = await import('@payload-config')
+    info.configLoaded = true
+
+    const { getPayload } = await import('payload')
+    info.payloadImported = true
+
+    const payload = await getPayload({ config: await config.default })
+    info.payloadInitialized = true
 
     const all = await payload.find({
       collection: 'journal-posts',
       limit: 50,
       where: { _status: { equals: 'published' } },
     })
-
-    const bySlug = await payload.find({
-      collection: 'journal-posts',
-      where: {
-        slug: { equals: slug },
-        _status: { equals: 'published' },
-      },
-      limit: 1,
-    })
-
-    const bySlugNoStatus = await payload.find({
-      collection: 'journal-posts',
-      where: { slug: { equals: slug } },
-      limit: 1,
-    })
-
-    return NextResponse.json({
-      allCount: all.docs.length,
-      allSlugs: all.docs.map((d: Record<string, unknown>) => d.slug),
-      searchedSlug: slug,
-      withStatusCount: bySlug.docs.length,
-      withStatusResult: bySlug.docs.map((d: Record<string, unknown>) => ({
-        slug: d.slug,
-        title: d.title,
-        status: d._status,
-      })),
-      noStatusCount: bySlugNoStatus.docs.length,
-      noStatusResult: bySlugNoStatus.docs.map((d: Record<string, unknown>) => ({
-        slug: d.slug,
-        title: d.title,
-        status: d._status,
-      })),
-    })
+    info.postCount = all.docs.length
+    info.slugs = all.docs.map((d: Record<string, unknown>) => d.slug)
   } catch (e) {
-    return NextResponse.json(
-      { error: String(e), stack: e instanceof Error ? e.stack : undefined },
-      { status: 500 },
-    )
+    info.error = String(e)
+    info.errorName = e instanceof Error ? e.name : 'unknown'
+    info.stack = e instanceof Error ? e.stack?.split('\n').slice(0, 5) : undefined
   }
+
+  return NextResponse.json(info)
 }
