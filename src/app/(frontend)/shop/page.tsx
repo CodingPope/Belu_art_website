@@ -91,11 +91,11 @@ export default async function ShopPage() {
 
         <div className="cards3" style={{ marginTop: 'clamp(2.4rem, 4vw, 3.2rem)' }} data-r>
           <div className="card">
-            <div className="kicker">In person</div>
+            <div className="kicker">Stockist</div>
             <h3>Abstract Denver</h3>
             <p>Tees, prints, and stickers are stocked in store, at every Abstract Denver location.</p>
-            <Link className="link" href="/connect">
-              Stockist details
+            <Link className="link" href="/events">
+              Events &amp; stockists
               <svg className="ar" style={{ fill: 'none', stroke: 'currentColor', strokeWidth: 1.6 }}>
                 <ArrowIcon />
               </svg>

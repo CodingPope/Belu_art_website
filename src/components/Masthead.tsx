@@ -14,7 +14,7 @@ type MastheadProps = {
 const navItems = [
   { href: '/shop', label: 'Shop' },
   { href: '/gallery', label: 'Gallery' },
-  { href: '/journal', label: 'Journal' },
+  { href: '/events', label: 'Events' },
   { href: '/about', label: 'About' },
   { href: '/connect', label: 'Connect' },
 ]
@@ -83,6 +83,17 @@ export function Masthead({ socialLinks = [] }: MastheadProps) {
               <MenuIcon />
             </svg>
           </button>
+        </div>
+        <div className="mprog" aria-hidden="true">
+          <StarIcon className="star" />
+          <span className="mprog-track">
+            <span className="mprog-ahead" />
+            <span className="mprog-fill" />
+            <span className="mprog-needle">
+              <StarIcon className="star" />
+            </span>
+          </span>
+          <StarIcon className="star mprog-end" />
         </div>
       </header>
       <MobileMenu open={menuOpen} onClose={closeMenu} socialLinks={socialLinks} />

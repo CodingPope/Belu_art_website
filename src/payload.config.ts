@@ -14,6 +14,8 @@ import { JournalPosts } from './collections/JournalPosts'
 import { Subscribers } from './collections/Subscribers'
 import { Markets } from './collections/Markets'
 import { Inquiries } from './collections/Inquiries'
+import { Promotions } from './collections/Promotions'
+import { PressMentions } from './collections/PressMentions'
 import { SiteSettings } from './globals/SiteSettings'
 import { HomePage } from './globals/HomePage'
 import { AboutPage } from './globals/AboutPage'
@@ -53,7 +55,7 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media, Artworks, Products, JournalPosts, Subscribers, Markets, Inquiries],
+  collections: [Users, Media, Artworks, Products, JournalPosts, Subscribers, Markets, Inquiries, Promotions, PressMentions],
   globals: [SiteSettings, HomePage, AboutPage, ConnectPage, ShopPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -8,6 +8,8 @@ export const metadata: Metadata = {
 }
 import { Frame } from '@/components/Frame'
 import { StarIcon } from '@/components/Icons'
+import { getImageUrl, getImageAlt } from '@/types'
+import type { MediaDoc } from '@/types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 
 type Chapter = {
@@ -103,6 +105,7 @@ export default async function AboutPage() {
 
   const pullQuote = (aboutData.pullQuote as string) || 'Who I am is not rooted in where I come from, but in the things I love to do.'
   const pullQuoteAttribution = (aboutData.pullQuoteAttribution as string) || 'Belu Maluenda'
+  const studioPortrait = aboutData.studioPortrait as MediaDoc | null
   const studioHeading = (aboutData.studioHeading as string) || 'Made by hand, shared with heart'
   const studioText = (aboutData.studioText as string) || "Most days you’ll find me with a brush in one hand and a coffee in the other, chasing colour and trying to make something that feels alive. Everything here is made by me, in small batches, for the love of it."
   const journeyStops = (aboutData.journeyStops as { place: string; description?: string }[]) || [
@@ -149,13 +152,14 @@ export default async function AboutPage() {
         <div className="pband" data-r>
           <div className="pic">
             <Frame
-              alt="Belu in the studio"
+              src={getImageUrl(studioPortrait, 'gallery')}
+              alt={getImageAlt(studioPortrait) || 'Belu in the studio'}
               aspectRatio="4/5"
               placeholderClass="art--studio"
               label={{
                 category: 'In the studio',
                 title: 'Belu, at the easel',
-                meta: 'Photograph · your image here',
+                meta: studioPortrait ? '' : 'Photograph · your image here',
               }}
             />
           </div>

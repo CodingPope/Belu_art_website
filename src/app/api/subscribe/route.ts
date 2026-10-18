@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { addSubscriber } from '@/lib/subscribe'
 
 export async function POST(request: Request) {
   try {
@@ -11,20 +12,9 @@ export async function POST(request: Request) {
 
     const payload = await getPayload({ config: await config })
 
-    const existing = await payload.find({
-      collection: 'subscribers',
-      where: { email: { equals: email } },
-      limit: 1,
-    })
-
-    if (existing.docs.length > 0) {
+    if ((await addSubscriber(payload, email, source)) === 'exists') {
       return NextResponse.json({ error: 'already_subscribed' }, { status: 409 })
     }
-
-    await payload.create({
-      collection: 'subscribers',
-      data: { email, source },
-    })
 
     return NextResponse.json({ success: true })
   } catch {

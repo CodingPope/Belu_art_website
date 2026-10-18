@@ -70,13 +70,11 @@ export async function POST() {
     await payload.updateGlobal({
       slug: 'site-settings',
       data: {
-        siteName: 'Belu Malu',
-        tagline: 'Chilean artist, based in the U.S.',
         contactEmail: 'hello@belumalu.com',
         copyrightText: '© 2026 Belu Malu · Art by Belu Maluenda',
         footerText: 'Made and shared for the joy of it. Thank you for supporting the dream.',
         emailSignupHeading: 'Join the journey',
-        emailSignupBody: 'New work, stories, and market dates.',
+        emailSignupBody: 'New work, print drops, and event dates.',
         socialLinks: [
           { platform: 'instagram', url: 'https://www.instagram.com/belumaluarts/', handle: '@belumaluarts' },
           { platform: 'ebay', url: 'https://www.ebay.com/usr/belumaluarts', handle: 'belumaluarts' },
@@ -112,15 +110,13 @@ export async function POST() {
       slug: 'home-page',
       data: {
         heroEyebrow: 'Chilean artist, based in the U.S.',
-        heroDateLabel: 'Studio journal, 2026',
+        heroDateLabel: 'Art, prints & events · 2026',
         heroHeadline: 'Art rooted in\nmovement, memory,\nand joy.',
         heroHighlightWord: 'joy',
         heroSubtext: "I'm Belu, a Chilean artist based in the U.S. I create playful, meaningful artwork inspired by memory, travel, heritage, and the wild beauty of everyday life.",
         statementQuote: "Born in Santiago and raised in the U.S., I've always had one foot in each world. My art is where they finally meet.",
         statementAttribution: 'Belu Maluenda, artist',
-        featuredDescription: 'A spinning bloom of colour built from one cat, endless patience, and a little obsession with symmetry.',
         shopHeading: 'A new collection is on the way.',
-        shopBody: "Support the dream, take something home from an ever-evolving collection. I'm deep in a new body of work right now, so the racks are quiet for a moment. Join the list for first access.",
       },
     })
     results.push('Seeded home page')
