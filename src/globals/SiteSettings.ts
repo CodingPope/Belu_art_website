@@ -5,24 +5,10 @@ export const SiteSettings: GlobalConfig = {
   label: 'Site Settings',
   fields: [
     {
-      name: 'siteName',
-      type: 'text',
-      defaultValue: 'Belu Malu',
-    },
-    {
-      name: 'tagline',
-      type: 'text',
-      defaultValue: 'Chilean artist, based in the U.S.',
-    },
-    {
-      name: 'logo',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
       name: 'contactEmail',
       type: 'email',
       defaultValue: 'hello@belumalu.com',
+      admin: { description: 'Shown on the Connect page for people who prefer email.' },
     },
     {
       name: 'copyrightText',
@@ -62,75 +48,20 @@ export const SiteSettings: GlobalConfig = {
       ],
     },
     {
-      name: 'alert',
-      type: 'group',
-      label: 'Site Alert',
-      admin: {
-        description: 'An announcement banner that appears on pages. Toggle it on/off as needed.',
-      },
-      fields: [
-        {
-          name: 'enabled',
-          type: 'checkbox',
-          defaultValue: false,
-          label: 'Show alert',
-        },
-        {
-          name: 'heading',
-          type: 'text',
-          defaultValue: 'A new collection is on the way.',
-          admin: {
-            condition: (_, siblingData) => siblingData?.enabled,
-          },
-        },
-        {
-          name: 'body',
-          type: 'textarea',
-          admin: {
-            condition: (_, siblingData) => siblingData?.enabled,
-          },
-        },
-        {
-          name: 'signature',
-          type: 'text',
-          admin: {
-            description: 'Optional sign-off, e.g. "love, Belu"',
-            condition: (_, siblingData) => siblingData?.enabled,
-          },
-        },
-        {
-          name: 'pages',
-          type: 'select',
-          hasMany: true,
-          defaultValue: ['shop'],
-          options: [
-            { label: 'Home', value: 'home' },
-            { label: 'Shop', value: 'shop' },
-            { label: 'Gallery', value: 'gallery' },
-            { label: 'Journal', value: 'journal' },
-            { label: 'About', value: 'about' },
-          ],
-          admin: {
-            description: 'Which pages should show this alert',
-            condition: (_, siblingData) => siblingData?.enabled,
-          },
-        },
-      ],
-    },
-    {
       name: 'footerText',
       type: 'textarea',
-      defaultValue: 'Made and shared for the joy of it. Thank you for supporting the dream.',
+      defaultValue: 'Original paintings, fine art prints, and wearable art, made by hand.',
     },
     {
       name: 'emailSignupHeading',
       type: 'text',
       defaultValue: 'Join the journey',
+      admin: { description: 'Footer newsletter heading.' },
     },
     {
       name: 'emailSignupBody',
       type: 'textarea',
-      defaultValue: 'New work, stories, and market dates.',
+      defaultValue: 'New work, print drops, and event dates.',
     },
   ],
 }

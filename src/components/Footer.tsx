@@ -11,11 +11,11 @@ type FooterProps = {
 }
 
 export function Footer({
-  footerText = 'Made and shared for the joy of it. Thank you for supporting the dream.',
+  footerText = 'Original paintings, fine art prints, and wearable art, made by hand.',
   copyrightText = '© 2026 Belu Malu · Art by Belu Maluenda',
   socialLinks = [],
   emailSignupHeading = 'Join the journey',
-  emailSignupBody = 'New work, stories, and market dates.',
+  emailSignupBody = 'New work, print drops, and event dates.',
 }: FooterProps) {
   return (
     <footer className="foot">
@@ -43,7 +43,7 @@ export function Footer({
           <h4>Explore</h4>
           <Link href="/shop">Shop</Link>
           <Link href="/gallery">Gallery</Link>
-          <Link href="/journal">Journal</Link>
+          <Link href="/events">Events</Link>
           <Link href="/about">About</Link>
           <Link href="/connect">Connect</Link>
         </div>

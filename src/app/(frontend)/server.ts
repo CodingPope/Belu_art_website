@@ -20,3 +20,25 @@ export const getSiteSettings = unstable_cache(
   ['site-settings'],
   { revalidate: 60 },
 )
+
+// Enabled promotions; date windows are checked client-side so a cached
+// list can't show a campaign past its end time.
+export const getPromotions = unstable_cache(
+  async () => {
+    try {
+      const payload = await payloadClient()
+      const res = await payload.find({
+        collection: 'promotions',
+        where: { enabled: { equals: true } },
+        sort: '-priority',
+        depth: 1,
+        limit: 20,
+      })
+      return res.docs
+    } catch (_e) {
+      return []
+    }
+  },
+  ['promotions'],
+  { revalidate: 60 },
+)

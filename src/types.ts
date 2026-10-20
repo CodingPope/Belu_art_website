@@ -34,7 +34,7 @@ export type ProductDoc = {
   category?: string
   price?: number
   priceDisplay?: string
-  status?: string
+  productStatus?: string
   description?: unknown
   relatedArtwork?: ArtworkDoc | string | null
   sortOrder?: number
@@ -56,9 +56,26 @@ export type JournalPostDoc = {
 export type MarketDoc = {
   id: string
   name: string
-  location?: string
-  status?: string
-  dateInfo?: string
+  eventType?: string | null
+  startDate?: string | null
+  endDate?: string | null
+  location?: string | null
+  image?: MediaDoc | string | null
+  url?: string | null
+  status?: string | null
+  dateInfo?: string | null
+  sortOrder?: number
+}
+
+export type PressMentionDoc = {
+  id: string
+  outlet: string
+  title: string
+  date?: string | null
+  quote?: string | null
+  url?: string | null
+  logo?: MediaDoc | string | null
+  featured?: boolean
   sortOrder?: number
 }
 

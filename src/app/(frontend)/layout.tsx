@@ -10,7 +10,10 @@ import { Lightbox } from '@/components/Lightbox'
 import { ScrollReveal } from '@/components/ScrollReveal'
 import { PageTransition } from '@/components/PageTransition'
 import { ImageProtection } from '@/components/ImageProtection'
-import { getSiteSettings } from './server'
+import { PromoPopup, type Promo } from '@/components/PromoPopup'
+import { getSiteSettings, getPromotions } from './server'
+import type { MediaDoc } from '@/types'
+import { getImageUrl, getImageAlt } from '@/types'
 import './globals.css'
 
 const archivo = Archivo({
@@ -67,7 +70,25 @@ export default async function FrontendLayout({
 }: {
   children: React.ReactNode
 }) {
-  const siteSettings = await getSiteSettings()
+  const [siteSettings, promoDocs] = await Promise.all([getSiteSettings(), getPromotions()])
+
+  // Only pass the fields the client needs
+  const promos: Promo[] = (promoDocs as unknown as Record<string, unknown>[]).map((p) => ({
+    id: String(p.id),
+    campaignType: (p.campaignType as string) || 'sale',
+    display: p.display === 'banner' ? 'banner' : 'modal',
+    headline: p.headline as string,
+    body: p.body as string | null,
+    imageUrl: getImageUrl(p.image as MediaDoc, 'gallery'),
+    imageAlt: getImageAlt(p.image as MediaDoc),
+    ctaLabel: p.ctaLabel as string | null,
+    ctaUrl: p.ctaUrl as string | null,
+    targetPages: (p.targetPages as string[] | null)?.length ? (p.targetPages as string[]) : ['all'],
+    startDate: p.startDate as string | null,
+    endDate: p.endDate as string | null,
+    triggerDelay: typeof p.triggerDelay === 'number' ? p.triggerDelay : 6,
+    dismissFrequency: (p.dismissFrequency as string) || '7',
+  }))
 
   const socialLinks =
     (siteSettings as Record<string, unknown>)?.socialLinks as
@@ -92,6 +113,7 @@ export default async function FrontendLayout({
         />
         <Toast />
         <Lightbox />
+        <PromoPopup promos={promos} />
         <ScrollReveal />
         <ImageProtection />
       </body>

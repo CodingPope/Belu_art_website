@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import Image from 'next/image'
 import { CloseIcon, StarIcon } from './Icons'
+import { useFocusTrap } from '@/lib/useFocusTrap'
 
 type LightboxData = {
   imageSrc?: string
@@ -15,6 +16,8 @@ type LightboxData = {
 
 export function Lightbox() {
   const [data, setData] = useState<LightboxData | null>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  useFocusTrap(panelRef, data !== null)
 
   const close = useCallback(() => setData(null), [])
 
@@ -50,7 +53,7 @@ export function Lightbox() {
       aria-labelledby="lbTitle"
     >
       <div className="lb-back" onClick={close} />
-      <div className="lb-panel">
+      <div className="lb-panel" ref={panelRef}>
         <button className="lb-close" onClick={close} aria-label="Close detail view">
           <svg style={{ width: 18, height: 18, fill: 'none', stroke: 'currentColor', strokeWidth: 1.6 }}>
             <CloseIcon />

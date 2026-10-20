@@ -27,6 +27,7 @@ export const Inquiries: CollectionConfig = {
         { label: 'Commission', value: 'commission' },
         { label: 'Original Purchase', value: 'original' },
         { label: 'Wholesale / Stockist', value: 'wholesale' },
+        { label: 'Event / Collaboration', value: 'event' },
         { label: 'General', value: 'general' },
       ],
     },
@@ -39,6 +40,16 @@ export const Inquiries: CollectionConfig = {
       name: 'message',
       type: 'textarea',
       required: true,
+    },
+    {
+      name: 'newsletterOptIn',
+      type: 'checkbox',
+      label: 'Opted in to newsletter',
+      defaultValue: false,
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+      },
     },
     {
       name: 'status',

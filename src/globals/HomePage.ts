@@ -18,7 +18,7 @@ export const HomePage: GlobalConfig = {
             {
               name: 'heroDateLabel',
               type: 'text',
-              defaultValue: 'Studio journal, 2026',
+              defaultValue: 'Art, prints & events · 2026',
             },
             {
               name: 'heroHeadline',
@@ -46,37 +46,25 @@ export const HomePage: GlobalConfig = {
               name: 'heroFeaturedArtwork',
               type: 'relationship',
               relationTo: 'artworks',
+              admin: { description: 'Artwork in the hero. Defaults to the first artwork in the gallery.' },
             },
             {
               name: 'heroPortrait',
               type: 'upload',
               relationTo: 'media',
+              admin: { description: 'Photo of Belu shown beside the hero artwork.' },
             },
           ],
         },
         {
-          label: 'Featured Work',
-          fields: [
-            {
-              name: 'featuredArtwork',
-              type: 'relationship',
-              relationTo: 'artworks',
-            },
-            {
-              name: 'featuredDescription',
-              type: 'textarea',
-              defaultValue:
-                'A spinning bloom of colour built from one cat, endless patience, and a little obsession with symmetry.',
-            },
-          ],
-        },
-        {
-          label: 'Artist Statement',
+          label: 'About Me',
+          description: 'The short About Me module on the home page.',
           fields: [
             {
               name: 'statementPortrait',
               type: 'upload',
               relationTo: 'media',
+              label: 'Portrait',
             },
             {
               name: 'statementQuote',
@@ -98,31 +86,15 @@ export const HomePage: GlobalConfig = {
               name: 'shopHeading',
               type: 'text',
               defaultValue: 'A new collection is on the way.',
-            },
-            {
-              name: 'shopBody',
-              type: 'textarea',
-              defaultValue:
-                "Support the dream, take something home from an ever-evolving collection. I'm deep in a new body of work right now, so the racks are quiet for a moment. Join the list for first access.",
+              admin: { description: 'One line under the "Bring the work home" heading.' },
             },
             {
               name: 'shopPreviewProducts',
               type: 'relationship',
               relationTo: 'products',
               hasMany: true,
-              maxRows: 4,
-            },
-          ],
-        },
-        {
-          label: 'Journal Preview',
-          fields: [
-            {
-              name: 'journalPreviewPosts',
-              type: 'relationship',
-              relationTo: 'journal-posts',
-              hasMany: true,
               maxRows: 3,
+              admin: { description: 'Up to 3 products shown on the home page.' },
             },
           ],
         },
