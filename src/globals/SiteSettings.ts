@@ -50,7 +50,7 @@ export const SiteSettings: GlobalConfig = {
     {
       name: 'footerText',
       type: 'textarea',
-      defaultValue: 'Made and shared for the joy of it. Thank you for supporting the dream.',
+      defaultValue: 'Original paintings, fine art prints, and wearable art, made by hand.',
     },
     {
       name: 'emailSignupHeading',

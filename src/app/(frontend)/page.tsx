@@ -243,7 +243,7 @@ export default async function HomePage() {
           <div className="chap" data-r>
             <div className="ttl">
               <span className="kicker k">The shop</span>
-              <h2>Support the dream</h2>
+              <h2>Bring the work home</h2>
               <p className="mod-sub">{shopHeading}</p>
             </div>
             <Link className="link act" href="/shop">

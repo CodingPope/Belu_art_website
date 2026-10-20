@@ -86,7 +86,7 @@ export const HomePage: GlobalConfig = {
               name: 'shopHeading',
               type: 'text',
               defaultValue: 'A new collection is on the way.',
-              admin: { description: 'One line under the "Support the dream" heading.' },
+              admin: { description: 'One line under the "Bring the work home" heading.' },
             },
             {
               name: 'shopPreviewProducts',

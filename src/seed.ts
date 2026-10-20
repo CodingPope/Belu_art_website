@@ -342,7 +342,7 @@ async function seed() {
     data: {
       contactEmail: 'hello@belumalu.com',
       copyrightText: '© 2026 Belu Malu · Art by Belu Maluenda',
-      footerText: 'Made and shared for the joy of it. Thank you for supporting the dream.',
+      footerText: 'Original paintings, fine art prints, and wearable art, made by hand.',
       emailSignupHeading: 'Join the journey',
       emailSignupBody: 'New work, print drops, and event dates.',
       socialLinks: [
